@@ -1,5 +1,6 @@
 import java.util.Arrays;
 
+import static java.lang.System.err;
 import static java.lang.System.out;
 
 public class Board {
@@ -47,19 +48,39 @@ public class Board {
     }
 
     public boolean addHorizontalLine(int row, int col) {
-        if (horizontalLines[row][col] == ' ') {
+        // Validate row and column indices
+        if (row < 0 || row >= horizontalLines.length || col < 0 || col >= horizontalLines[row].length) {
+            err.println("Invalid position! Row or column is out of bounds.");
+            return false;
+        }
+
+        // Check if the cell is empty before adding a horizontal line
+        else if (horizontalLines[row][col] == ' ') {
             horizontalLines[row][col] = '-';
             return true;
+        } else {
+            err.println("Position already occupied! Cannot add a horizontal line here.");
+            return false;
         }
-        return false;
+
     }
 
     public boolean addVerticalLine(int row, int col) {
-        if (verticalLines[row][col] == ' ') {
+        // Validate row and column indices
+        if (row < 0 || row >= verticalLines.length || col < 0 || col >= verticalLines[row].length) {
+            err.println("Invalid position! Row or column is out of bounds.");
+            return false;
+        }
+
+        // Check if the cell is empty before adding a vertical line
+        else if (verticalLines[row][col] == ' ') {
             verticalLines[row][col] = '|';
             return true;
+        } else {
+            err.println("Position already occupied! Cannot add a vertical line here.");
+            return false;
         }
-        return false;
+
     }
 
     public int checkBoxes(Player player) {
