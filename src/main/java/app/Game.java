@@ -39,7 +39,7 @@ public class Game {
     public void setBoardSize(String boardSize) {
         while (true) {
             if (boardSize == null || boardSize.isEmpty()) {
-                System.out.println("Enter Board Size (Allowed sizes: 3x2, 5x4, 8x6, 11x9): ");
+                out.println("Enter Board Size (Allowed sizes: 3x2, 5x4, 8x6, 11x9): ");
                 Scanner scanner = new Scanner(System.in);
                 boardSize = scanner.nextLine(); // Read input dynamically
             }
@@ -55,16 +55,16 @@ public class Game {
                     if (InputValidator.isValidBoardSize(boardSize, Constants.VALID_BOARD_SIZES)) {
                         columns = currentColumns;
                         rows = currentRows;
-                        System.out.println("Board size set to: " + columns + "x" + rows);
+                        out.println("Board size set to: " + columns + "x" + rows);
                         break; // Exit loop after successful validation
                     } else {
-                        System.out.println(Constants.INVALID_BOARD_SIZE_MSG);
+                        errorMessage.genericErrorMessage(Constants.INVALID_BOARD_SIZE_MSG);
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println(Constants.INVALID_BOARD_SIZE_MSG);
+                    errorMessage.genericErrorMessage(Constants.INVALID_BOARD_SIZE_MSG);
                 }
             } else {
-                System.out.println(Constants.INVALID_BOARD_SIZE_MSG);
+                errorMessage.genericErrorMessage(Constants.INVALID_BOARD_SIZE_MSG);
             }
 
             // Clear input for subsequent retries
@@ -76,7 +76,7 @@ public class Game {
     public void setPlayersNumber(String input) {
         while (true) {
             if (input == null || input.isEmpty()) {
-                System.out.println("Enter Number of Players (1-4): ");
+                out.println("Enter Number of Players (1-4): ");
                 input = scanner.nextLine(); // Prompt for input dynamically
             }
 
@@ -109,7 +109,7 @@ public class Game {
                     playerName = inputNames.get(i).trim();
                 } else {
                     // Prompt user for player name
-                    System.out.println("Enter Player " + (i + 1) + " Name: ");
+                    out.println("Enter Player " + (i + 1) + " Name: ");
                     playerName = scanner.nextLine().trim();
                 }
 
