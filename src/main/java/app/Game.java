@@ -138,24 +138,26 @@ public class Game {
         out.println("Game initialized successfully!");
         out.println("Board size: " + columns + "x" + rows);
         out.println("Players: " + String.join(", ", playerNames));
-        start();
+        start('\0', -1, -1);
     }
 
-    public void start() {
+    public void start(char lineType, int row, int col) {
         boolean gameRunning = true;
 
-        while (gameRunning) {
+        while (gameRunning && (!isTestingEnv || (lineType != '\0' && row != -1 && col != -1))) {
             board.drawBoard();
 
             Player player = players[currentPlayer];
             out.println(player.getName() + "'s turn!");
+            if (!isTestingEnv) {
+                out.print("Enter line type (h for horizontal, v for vertical): ");
+                lineType = scanner.next().charAt(0);
+                out.print("Enter row: ");
+                row = scanner.nextInt();
+                out.print("Enter column: ");
+                col = scanner.nextInt();
+            }
 
-            out.print("Enter line type (h for horizontal, v for vertical): ");
-            char lineType = scanner.next().charAt(0);
-            out.print("Enter row: ");
-            int row = scanner.nextInt();
-            out.print("Enter column: ");
-            int col = scanner.nextInt();
 
             boolean validMove = false;
             if (lineType == 'h') {
@@ -183,6 +185,11 @@ public class Game {
                 gameRunning = false;
                 board.drawBoard();
                 player.announceWinner(players);
+            }
+            if (isTestingEnv) {
+                lineType = '\0';
+                row = -1;
+                col = -1;
             }
         }
         scanner.close();

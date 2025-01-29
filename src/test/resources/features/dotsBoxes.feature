@@ -17,7 +17,17 @@ Feature: Game Initialization
       | Alice |
       | Bob   |
     And the game should initialize successfully
-    And Play game and finish it
+    And Play game and finish it win
+
+  @happyScenario
+  Scenario: Initialize game with valid data and draw
+    Given I enter board size "3x2"
+    And I enter number of players "2"
+    And I enter player names:
+      | Alice |
+      | Bob   |
+    And the game should initialize successfully
+    And Play game and finish it draw
 
   @negativeScenarios
   Scenario: Initialize game with invalid board size

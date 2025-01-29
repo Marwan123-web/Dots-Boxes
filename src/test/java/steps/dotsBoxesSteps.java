@@ -79,7 +79,56 @@ public class dotsBoxesSteps {
         assertEquals(expectedMessage, actualMessage);
     }
 
-    @And("Play game and finish it")
-    public void playGameAndFinishIt() {
+    @And("Play game and finish it win")
+    public void playGameAndFinishItWin() {
+        game.start('h', 0, 0);
+        game.start('h', 0, 1);
+        game.start('h', 0, 2);
+
+        game.start('h', 1, 0);
+        game.start('h', 1, 1);
+        game.start('h', 1, 2);
+
+        game.start('h', 2, 0);
+        game.start('h', 2, 1);
+        game.start('h', 2, 2);
+
+        game.start('v', 0, 0);
+        game.start('v', 0, 1);
+        game.start('v', 0, 2);
+
+        game.start('v', 1, 0);
+        game.start('v', 1, 1);
+        game.start('v', 1, 2);
+
+        game.start('v', 0, 3);
+        game.start('v', 1, 3);
     }
+
+    @And("Play game and finish it draw")
+    public void playGameAndFinishItDraw() {
+        game.start('h', 0, 0);
+        game.start('h', 0, 1);
+        game.start('h', 0, 2);
+
+        game.start('h', 1, 0);
+        game.start('h', 1, 1);
+        game.start('h', 1, 2);
+
+        game.start('h', 2, 0);
+        game.start('h', 2, 1);
+        game.start('h', 2, 2);
+
+        game.start('v', 0, 0);
+        game.start('v', 0, 1);
+        game.start('v', 0, 2);
+        game.start('v', 0, 3);
+
+        game.start('v', 1, 0);
+        game.start('v', 1, 1);
+        game.start('v', 1, 2);
+        game.start('v', 1, 3);
+    }
+
+
 }
