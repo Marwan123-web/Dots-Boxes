@@ -14,7 +14,7 @@ public class Constants {
     // Error messages
     public static final String INVALID_BOARD_SIZE_MSG = "Invalid board size! Allowed sizes are: 3x2, 5x4, 8x6, 11x9.";
     public static final String INVALID_PLAYER_COUNT_MSG = "Invalid number of players! Must be between %s and %s.";
-    public static final String INVALID_PLAYER_NAME_MSG = "Invalid name. Player name cannot be a number only.";
+    public static final String INVALID_PLAYER_NAME_MSG = "Invalid name. Player name cannot be a number only or Empty.";
     public static final String INVALID_LINETYPE_MSG = "Invalid line type. Line type must be start with h or v";
     public static final String INVALID_INTEGER_MSG = "Invalid input. Please enter a valid integer.";
     public static final String INVALID_OCCUPIED_HORIZONTAL_MSG = "Position already occupied! Cannot add a horizontal line here.";

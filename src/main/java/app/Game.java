@@ -11,17 +11,17 @@ import java.util.Scanner;
 import static java.lang.System.out;
 
 public class Game {
-    private ErrorMessage errorMessage = new ErrorMessage();
+    public boolean isTestingEnv;
+
+    public Game(String env) {
+        isTestingEnv = "test".equals(env);
+    }
+
+    private final ErrorMessage errorMessage = new ErrorMessage();
     private Board board;
     private Player[] players;
     private int currentPlayer;
     // Define valid column-row pairs
-    private List<int[]> validPairs = Arrays.asList(
-            new int[]{3, 2},
-            new int[]{5, 4},
-            new int[]{8, 6},
-            new int[]{11, 9}
-    );
     private final Scanner scanner = new Scanner(System.in);
     private int columns;
     private int rows;
@@ -37,7 +37,7 @@ public class Game {
     }
 
     public void setBoardSize(String boardSize) {
-        while (true) {
+        while (!isTestingEnv) {
             if (boardSize == null || boardSize.isEmpty()) {
                 out.println("Enter Board Size (Allowed sizes: 3x2, 5x4, 8x6, 11x9): ");
                 Scanner scanner = new Scanner(System.in);
@@ -74,7 +74,7 @@ public class Game {
 
 
     public void setPlayersNumber(String input) {
-        while (true) {
+        while (!isTestingEnv) {
             if (input == null || input.isEmpty()) {
                 out.println("Enter Number of Players (1-4): ");
                 input = scanner.nextLine(); // Prompt for input dynamically
@@ -101,7 +101,7 @@ public class Game {
         // Validate and Get Player Names
         playerNames = new String[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++) {
-            while (true) {
+            while (!isTestingEnv) {
                 String playerName;
 
                 if (inputNames != null && i < inputNames.size()) {

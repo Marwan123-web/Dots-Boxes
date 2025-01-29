@@ -4,7 +4,8 @@ import static java.lang.System.err;
 
 public class ErrorMessage {
 
-    public void genericErrorMessage(String message) {
+    public String genericErrorMessage(String message) {
         err.println(message);
+        return message;
     }
 }
