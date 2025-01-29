@@ -1,9 +1,14 @@
+package app;
+
+import errors.ErrorMessage;
+import utils.Constants;
+
 import java.util.Arrays;
 
-import static java.lang.System.err;
 import static java.lang.System.out;
 
 public class Board {
+    private ErrorMessage errorMessage = new ErrorMessage();
     private int rows;
     private int cols;
     private char[][] horizontalLines;
@@ -50,7 +55,7 @@ public class Board {
     public boolean addHorizontalLine(int row, int col) {
         // Validate row and column indices
         if (row < 0 || row >= horizontalLines.length || col < 0 || col >= horizontalLines[row].length) {
-            err.println("Invalid position! Row or column is out of bounds.");
+            errorMessage.genericErrorMessage(Constants.INVALID_BOUNDS_MSG);
             return false;
         }
 
@@ -59,7 +64,7 @@ public class Board {
             horizontalLines[row][col] = '-';
             return true;
         } else {
-            err.println("Position already occupied! Cannot add a horizontal line here.");
+            errorMessage.genericErrorMessage(Constants.INVALID_OCCUPIED_HORIZONTAL_MSG);
             return false;
         }
 
@@ -68,7 +73,7 @@ public class Board {
     public boolean addVerticalLine(int row, int col) {
         // Validate row and column indices
         if (row < 0 || row >= verticalLines.length || col < 0 || col >= verticalLines[row].length) {
-            err.println("Invalid position! Row or column is out of bounds.");
+            errorMessage.genericErrorMessage(Constants.INVALID_BOUNDS_MSG);
             return false;
         }
 
@@ -77,7 +82,7 @@ public class Board {
             verticalLines[row][col] = '|';
             return true;
         } else {
-            err.println("Position already occupied! Cannot add a vertical line here.");
+            errorMessage.genericErrorMessage(Constants.INVALID_OCCUPIED_VERTICAL_MSG);
             return false;
         }
 

@@ -1,3 +1,5 @@
+package app;
+
 import static java.lang.System.out;
 
 public class Player {
