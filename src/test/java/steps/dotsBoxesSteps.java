@@ -51,11 +51,6 @@ public class dotsBoxesSteps {
         game.InitGame(columns, rows, playerNames);
     }
 
-    @Then("the game should not initialize successfully")
-    public void the_game_should_not_initialize_successfully() {
-
-    }
-
     @Then("verify that user got error message of invalid board size")
     public void verifyThatUserGotErrorMessage() {
         String expectedMessage = Constants.INVALID_BOARD_SIZE_MSG;
