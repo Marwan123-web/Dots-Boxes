@@ -46,9 +46,8 @@ public class dotsBoxesSteps {
     @Given("I enter player names:")
     public void i_enter_player_names(io.cucumber.datatable.DataTable dataTable) {
         List<String> playerNames = dataTable.asList(String.class);
-        this.playerNames = playerNames.toArray(new String[0]);
-        this.playerNames = playerNames.toArray(new String[0]);
-        game.setPlayesNames(playerNames);
+        String actualMessage = game.setPlayesNames(playerNames);
+        scenarioContext.set("actualMessage", actualMessage);
     }
 
     @Then("the game should initialize successfully")
@@ -73,11 +72,12 @@ public class dotsBoxesSteps {
 
     @Then("verify that user got error message of invalid player name")
     public void verifyThatUserGotErrorMessageOfInvalidPlayerName() {
-        String expectedMessage = Constants.INVALID_PLAYER_NAME_MSG;
-        String actualMessage = errorMessage.genericErrorMessage(expectedMessage);
+        String expectedMessage = errorMessage.genericErrorMessage(Constants.INVALID_PLAYER_NAME_MSG);
+        String actualMessage = scenarioContext.get("actualMessage");
 
         // Assert the expected and actual messages match
         assertEquals(expectedMessage, actualMessage);
+        scenarioContext.reset("actualMessage");
     }
 
     @And("Play game and finish it win")

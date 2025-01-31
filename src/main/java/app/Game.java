@@ -103,30 +103,31 @@ public class Game {
         return "";
     }
 
-    public void setPlayesNames(List<String> inputNames) {
+    public String setPlayesNames(List<String> inputNames) {
         // Validate and Get Player Names
         playerNames = new String[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++) {
             while (true) {
                 String playerName;
 
-                if (inputNames != null && i < inputNames.size()) {
+                if (i < inputNames.size()) {
                     // Use input from the provided list
-                    playerName = inputNames.get(i).trim();
+                    playerName = inputNames.get(i) != null ? inputNames.get(i).trim() : "";
                 } else {
                     // Prompt user for player name
                     out.println("Enter Player " + (i + 1) + " Name: ");
                     playerName = scanner.nextLine().trim();
                 }
-
                 if (InputValidator.isValidPlayerName(playerName)) {
                     playerNames[i] = playerName.isEmpty() ? "Player " + (i + 1) : playerName;
                     break; // Valid name, exit the loop
                 } else {
-                    errorMessage.genericErrorMessage(Constants.INVALID_PLAYER_NAME_MSG);
+                    String error = errorMessage.genericErrorMessage(Constants.INVALID_PLAYER_NAME_MSG, !isTestingEnv);
+                    if (isTestingEnv) return error;
                 }
             }
         }
+        return "";
     }
 
     public void InitGame(int columns, int rows, String[] playerNames) {
