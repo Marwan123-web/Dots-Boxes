@@ -46,6 +46,7 @@ public class dotsBoxesSteps {
     @Given("I enter player names:")
     public void i_enter_player_names(io.cucumber.datatable.DataTable dataTable) {
         List<String> playerNames = dataTable.asList(String.class);
+        this.playerNames = playerNames.toArray(new String[0]);
         String actualMessage = game.setPlayesNames(playerNames);
         scenarioContext.set("actualMessage", actualMessage);
     }
