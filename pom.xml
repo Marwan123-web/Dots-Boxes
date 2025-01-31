@@ -37,7 +37,7 @@
             <version>7.11.0</version>
         </dependency>
 
-        f        <!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
+        <!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
         <dependency>
             <groupId>net.masterthought</groupId>
             <artifactId>cucumber-reporting</artifactId>
