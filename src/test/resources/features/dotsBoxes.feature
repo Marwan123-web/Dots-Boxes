@@ -17,7 +17,7 @@ Feature: Game Initialization
       | Alice |
       | Bob   |
     And the game should initialize successfully
-    And Play game and finish it win
+    Then Play game and finish it win
 
   @happyScenario
   Scenario: Initialize game with valid data and draw
@@ -27,7 +27,7 @@ Feature: Game Initialization
       | Alice |
       | Bob   |
     And the game should initialize successfully
-    And Play game and finish it draw
+    Then Play game and finish it draw
 
   @negativeScenarios
   Scenario: Initialize game with invalid board size

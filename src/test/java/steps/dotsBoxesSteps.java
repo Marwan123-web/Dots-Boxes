@@ -14,6 +14,7 @@ import java.util.List;
 import static java.lang.System.err;
 import static java.lang.System.out;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class dotsBoxesSteps {
 
@@ -97,7 +98,11 @@ public class dotsBoxesSteps {
         game.start('v', 1, 2);
 
         game.start('v', 0, 3);
-        game.start('v', 1, 3);
+
+        String actualMessage = game.start('v', 1, 3);
+        String expectedMessage = "wins with";
+
+        assertTrue(actualMessage.contains(expectedMessage), String.format("Expected message to contain: \"%s\" and got: \"%s\"", expectedMessage, actualMessage));
     }
 
     @And("Play game and finish it draw")
@@ -122,7 +127,11 @@ public class dotsBoxesSteps {
         game.start('v', 1, 0);
         game.start('v', 1, 1);
         game.start('v', 1, 2);
-        game.start('v', 1, 3);
+
+        String actualMessage = game.start('v', 1, 3);
+        String expectedMessage = "It's a Draw!";
+
+        assertTrue(actualMessage.contains(expectedMessage), String.format("Expected message to contain: \"%s\" and got: \"%s\"", expectedMessage, actualMessage));
     }
 
 
