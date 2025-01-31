@@ -27,6 +27,7 @@ public class Game {
     private int rows;
     private int numberOfPlayers;
     private String[] playerNames;
+    private boolean gameRunning = true;
 
     public void initGameInfo() {
         setBoardSize(null);
@@ -34,6 +35,7 @@ public class Game {
         setPlayesNames(null);
 
         InitGame(columns, rows, playerNames);
+        start('\0', -1, -1);
     }
 
     public void setBoardSize(String boardSize) {
@@ -138,11 +140,9 @@ public class Game {
         out.println("Game initialized successfully!");
         out.println("Board size: " + columns + "x" + rows);
         out.println("Players: " + String.join(", ", playerNames));
-        start('\0', -1, -1);
     }
 
-    public void start(char lineType, int row, int col) {
-        boolean gameRunning = true;
+    public String start(char lineType, int row, int col) {
 
         while (gameRunning && (!isTestingEnv || (lineType != '\0' && row != -1 && col != -1))) {
             board.drawBoard();
@@ -184,7 +184,7 @@ public class Game {
             if (isGameOver()) {
                 gameRunning = false;
                 board.drawBoard();
-                player.announceWinner(players);
+                return player.announceWinner(players);
             }
             if (isTestingEnv) {
                 lineType = '\0';
@@ -192,7 +192,7 @@ public class Game {
                 col = -1;
             }
         }
-        scanner.close();
+        return "";
     }
 
     private boolean isGameOver() {

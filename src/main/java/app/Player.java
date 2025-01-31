@@ -23,7 +23,7 @@ public class Player {
         this.score += points;
     }
 
-    public void announceWinner(Player[] players) {
+    public String announceWinner(Player[] players) {
         out.println("Game Over!");
 
         // Assume the first player is the winner initially
@@ -46,16 +46,24 @@ public class Player {
         }
 
         // Announce the result
+        StringBuilder result = new StringBuilder();
+
         if (isDraw) {
-            out.println("It's a Draw! Players with " + winner.getScore() + " points are:");
+            result.append("It's a Draw! Players with ").append(winner.getScore()).append(" points are:");
+            System.out.println("It's a Draw! Players with " + winner.getScore() + " points are:");
+
             for (Player player : players) {
                 if (player.getScore() == winner.getScore()) {
-                    out.println("- " + player.getName());
+                    result.append("\n- ").append(player.getName());
+                    System.out.println("- " + player.getName());
                 }
             }
         } else {
-            out.println(winner.getName() + " wins with " + winner.getScore() + " points!");
+            result.append(winner.getName()).append(" wins with ").append(winner.getScore()).append(" points!");
+            System.out.println(winner.getName() + " wins with " + winner.getScore() + " points!");
         }
+
+        return result.toString();
     }
 
 }
