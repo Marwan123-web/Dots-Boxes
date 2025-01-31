@@ -75,8 +75,8 @@ public class Game {
     }
 
 
-    public void setPlayersNumber(String input) {
-        while (!isTestingEnv) {
+    public String setPlayersNumber(String input) {
+        while (true) {
             if (input == null || input.isEmpty()) {
                 out.println("Enter Number of Players (1-4): ");
                 input = scanner.nextLine(); // Prompt for input dynamically
@@ -88,22 +88,22 @@ public class Game {
                 if (InputValidator.isValidPlayerCount(numberOfPlayers, Constants.MIN_PLAYERS, Constants.MAX_PLAYERS)) {
                     break; // Valid number of players, exit the loop
                 } else {
-                    errorMessage.genericErrorMessage(Constants.getInvalidPlayerCountMessage());
+                    String error = errorMessage.genericErrorMessage(Constants.getInvalidPlayerCountMessage(), false);
+                    if (isTestingEnv) return error;
                 }
             } catch (NumberFormatException e) {
-                errorMessage.genericErrorMessage(Constants.INVALID_INTEGER_MSG);
+                return errorMessage.genericErrorMessage(Constants.INVALID_INTEGER_MSG);
             }
-
-            // Reset input for retries
             input = null;
         }
+        return "";
     }
 
     public void setPlayesNames(List<String> inputNames) {
         // Validate and Get Player Names
         playerNames = new String[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++) {
-            while (!isTestingEnv) {
+            while (true) {
                 String playerName;
 
                 if (inputNames != null && i < inputNames.size()) {

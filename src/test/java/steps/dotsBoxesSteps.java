@@ -1,6 +1,7 @@
 package steps;
 
 import app.Game;
+import context.ScenarioContext;
 import errors.ErrorMessage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -24,6 +25,7 @@ public class dotsBoxesSteps {
     public int noOfPlayers;
     public String[] playerNames;
     public ErrorMessage errorMessage = new ErrorMessage();
+    private final ScenarioContext scenarioContext = new ScenarioContext();
 
     @Given("I enter board size {string}")
     public void i_enter_board_size(String boardSize) {
@@ -36,7 +38,8 @@ public class dotsBoxesSteps {
     @Given("I enter number of players {string}")
     public void i_enter_number_of_players(String numberOfPlayers) {
         this.noOfPlayers = Integer.parseInt(numberOfPlayers);
-        game.setPlayersNumber(numberOfPlayers);
+        String actualMessage = game.setPlayersNumber(numberOfPlayers);
+        scenarioContext.set("actualMessage", actualMessage);
     }
 
     @Given("I enter player names:")
@@ -62,8 +65,9 @@ public class dotsBoxesSteps {
     @Then("verify that user got error message of invalid player numbers")
     public void verifyThatUserGotErrorMessageOfInvalidPlayerNumbers() {
         String expectedMessage = errorMessage.genericErrorMessage(Constants.getInvalidPlayerCountMessage());
-        String actualMessage = errorMessage.genericErrorMessage(Constants.getInvalidPlayerCountMessage());
+        String actualMessage = scenarioContext.get("actualMessage");
         assertEquals(expectedMessage, actualMessage);
+        scenarioContext.reset("actualMessage");
     }
 
     @Then("verify that user got error message of invalid player name")
