@@ -32,7 +32,8 @@ public class dotsBoxesSteps {
         String[] sizes = boardSize.split("x");
         columns = Integer.parseInt(sizes[0].trim());
         rows = Integer.parseInt(sizes[1].trim());
-        game.setBoardSize(boardSize);
+        String actualMessage = game.setBoardSize(boardSize);
+        scenarioContext.set("actualMessage", actualMessage);
     }
 
     @Given("I enter number of players {string}")
@@ -57,8 +58,8 @@ public class dotsBoxesSteps {
 
     @Then("verify that user got error message of invalid board size")
     public void verifyThatUserGotErrorMessage() {
-        String expectedMessage = Constants.INVALID_BOARD_SIZE_MSG;
-        String actualMessage = errorMessage.genericErrorMessage(expectedMessage);
+        String expectedMessage = errorMessage.genericErrorMessage(Constants.INVALID_BOARD_SIZE_MSG);
+        String actualMessage = scenarioContext.get("actualMessage");
         assertEquals(expectedMessage, actualMessage);
     }
 

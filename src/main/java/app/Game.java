@@ -38,8 +38,8 @@ public class Game {
         start('\0', -1, -1);
     }
 
-    public void setBoardSize(String boardSize) {
-        while (!isTestingEnv) {
+    public String setBoardSize(String boardSize) {
+        while (true) {
             if (boardSize == null || boardSize.isEmpty()) {
                 out.println("Enter Board Size (Allowed sizes: 3x2, 5x4, 8x6, 11x9): ");
                 Scanner scanner = new Scanner(System.in);
@@ -60,18 +60,22 @@ public class Game {
                         out.println("Board size set to: " + columns + "x" + rows);
                         break; // Exit loop after successful validation
                     } else {
-                        errorMessage.genericErrorMessage(Constants.INVALID_BOARD_SIZE_MSG);
+                        String error = errorMessage.genericErrorMessage(Constants.INVALID_BOARD_SIZE_MSG, !isTestingEnv);
+                        if (isTestingEnv) return error;
                     }
                 } catch (NumberFormatException e) {
-                    errorMessage.genericErrorMessage(Constants.INVALID_BOARD_SIZE_MSG);
+                    String error = errorMessage.genericErrorMessage(Constants.INVALID_BOARD_SIZE_MSG, !isTestingEnv);
+                    if (isTestingEnv) return error;
                 }
             } else {
-                errorMessage.genericErrorMessage(Constants.INVALID_BOARD_SIZE_MSG);
+                String error = errorMessage.genericErrorMessage(Constants.INVALID_BOARD_SIZE_MSG, !isTestingEnv);
+                if (isTestingEnv) return error;
             }
 
             // Clear input for subsequent retries
             boardSize = null;
         }
+        return "";
     }
 
 
@@ -88,7 +92,7 @@ public class Game {
                 if (InputValidator.isValidPlayerCount(numberOfPlayers, Constants.MIN_PLAYERS, Constants.MAX_PLAYERS)) {
                     break; // Valid number of players, exit the loop
                 } else {
-                    String error = errorMessage.genericErrorMessage(Constants.getInvalidPlayerCountMessage(), false);
+                    String error = errorMessage.genericErrorMessage(Constants.getInvalidPlayerCountMessage(), !isTestingEnv);
                     if (isTestingEnv) return error;
                 }
             } catch (NumberFormatException e) {
