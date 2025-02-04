@@ -4,7 +4,7 @@ import errors.ErrorMessage;
 import utils.Constants;
 import utils.InputValidator;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -104,6 +104,9 @@ public class Game {
     }
 
     public String setPlayesNames(List<String> inputNames) {
+        if (inputNames == null) {
+            inputNames = new ArrayList<>();
+        }
         // Validate and Get Player Names
         playerNames = new String[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++) {

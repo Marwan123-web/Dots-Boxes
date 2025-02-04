@@ -8,12 +8,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.And;
 import utils.Constants;
 
-import java.io.ByteArrayInputStream;
-import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.System.err;
-import static java.lang.System.out;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
