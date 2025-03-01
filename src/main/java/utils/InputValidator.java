@@ -31,9 +31,4 @@ public class InputValidator {
     public static boolean isValidPlayerName(String name) {
         return name != null && !name.isEmpty() && !name.matches("^\\d+$");
     }
-
-    // Validate move input (row and column within bounds)
-    public static boolean isValidMove(int row, int col, int maxRows, int maxCols) {
-        return row >= 0 && row < maxRows && col >= 0 && col < maxCols;
-    }
 }
