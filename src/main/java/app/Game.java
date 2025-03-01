@@ -163,12 +163,15 @@ public class Game {
             board.drawBoard();
             Player player = players[currentPlayer];
             out.println(player.getName() + "'s turn!");
-            out.println("Enter line type (h for horizontal, v for vertical): ");
+            out.print("Enter line type (h for horizontal, v for vertical): ");
             char lineType = inputHandler.getUserInput("string").charAt(0);
-            out.println("Enter row: ");
+            out.println("");
+            out.print("Enter row: ");
             int row = Integer.parseInt(inputHandler.getUserInput("int"));
-            out.println("Enter column: ");
+            out.println("");
+            out.print("Enter column: ");
             int col = Integer.parseInt(inputHandler.getUserInput("int"));
+            out.println("");
 
 
             boolean validMove = false;
